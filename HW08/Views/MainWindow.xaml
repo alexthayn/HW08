@@ -1,29 +1,53 @@
-﻿<Window x:Class="HW08.Views.MainWindow"
+﻿<Fluent:RibbonWindow x:Class="HW08.Views.MainWindow"
+        xmlns:Fluent="urn:fluent-ribbon" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HW08"      
+        xmlns:local="clr-namespace:HW08"     
         mc:Ignorable="d"
-        Title="MainWindow" 
+        Title="Contact Editor" 
         Height="450" 
         Width="800">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="/Styles/RibbonStyle.xaml"/>
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
-    <DockPanel>
-        <Ribbon Template="{StaticResource RibbonControlTemplate}" 
-                Background="Tomato"
-                BorderBrush="Black">
-            <RibbonTab Header="Hello">
-                <RibbonGroup Header="Clipboard">
-                    <RibbonButton Label="Cut"/>
-                </RibbonGroup>
-            </RibbonTab>
-        </Ribbon>
-    </DockPanel>
-</Window>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        
+        <!--Using the Fluent Ribbon styling-->
+        <Fluent:Ribbon>
+            <Fluent:RibbonTabItem Header="Contacts">
+                <Fluent:RibbonGroupBox Header="Add">
+                    <!--Add contact-->
+                    <Fluent:Button Header="Add Contact"
+                                   Icon="{StaticResource AddContact}"
+                                   LargeIcon="{StaticResource AddContact}"/>
+
+                    <!--Import contact-->
+                    <Fluent:Button Header="Import Contact"
+                                   Icon="{StaticResource ImportContact}"
+                                   LargeIcon="{StaticResource ImportContact}"/>
+                </Fluent:RibbonGroupBox>
+                <Fluent:RibbonGroupBox Header="Edit">
+                    <!--Edit contact-->
+                    <Fluent:Button Header="Edit Contact"
+                                   Icon="{StaticResource EditContact}"
+                                   LargeIcon="{StaticResource EditContact}"/>
+
+                    <!--Delete contact-->
+                    <Fluent:Button Header="Delete Contact"
+                                   Icon="{StaticResource DeleteContact}"
+                                   LargeIcon="{StaticResource DeleteContact}"/>
+                </Fluent:RibbonGroupBox>
+
+                <Fluent:RibbonGroupBox Header="Search">
+                    <Fluent:Button Header="Search Contacts"
+                                   Icon="{StaticResource SearchContacts}"
+                                   LargeIcon="{StaticResource SearchContacts}"/>
+                </Fluent:RibbonGroupBox>
+            </Fluent:RibbonTabItem>
+        </Fluent:Ribbon>
+    </Grid>
+</Fluent:RibbonWindow>
