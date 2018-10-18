@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace HW08
+namespace HW08.Views
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
@@ -22,7 +22,7 @@ namespace HW08
     {
         public MainWindow()
         {
-            InitializeComponent();
+            InitializeComponent();  
         }
     }
 }
