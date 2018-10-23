@@ -1,0 +1,116 @@
+﻿<Window x:Class="HW08.Views.AddContact"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:converters="clr-namespace:HW08.Converters"
+        mc:Ignorable="d"
+        xmlns:vm="clr-namespace:HW08.ViewModels"
+        Title="AddContact" Height="550" Width="400"
+        DataContext="vm:EditViewModel">
+    <Window.Resources>
+        <converters:InverseAndBooleansToBooleanConverter x:Key="InverseAndBooleansToBooleanConverter"/>
+    </Window.Resources>
+    <Grid>
+        <Grid.Resources>
+            <Thickness x:Key="InfoMargin">0,10,0,0</Thickness>
+        </Grid.Resources>
+
+        <StackPanel Margin="10">
+            <!--First Name-->
+            <TextBlock Text="First Name"/>
+            <TextBox
+                Name="FirstName"
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.FirstName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+            <!--Last Name-->
+            <TextBlock Text="Last Name"/>
+            <TextBox
+                Name="LastName"
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.LastName, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+            <!--Company-->
+            <TextBlock Text="Company Name"/>
+            <TextBox
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.Company, Mode=TwoWay}"/>
+
+            <!--JobTitle-->
+            <TextBlock Text="Job Title"/>
+            <TextBox
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.JobTitle, Mode=TwoWay}"/>
+
+            <!--MobilePhone-->
+            <TextBlock Text="Mobile Phone"/>
+            <TextBox
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.MobilePhone, Mode=TwoWay}"/>
+
+            <!--Birthday-->
+            <TextBlock Margin="{StaticResource InfoMargin}" 
+                       Text="Birthday"/>
+            <TextBox
+                Name="Birthday"
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.Birthday, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+            <!--Email-->
+            <TextBlock Text="Email"/>
+            <TextBox
+                Name="Email"
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.Email, Mode=TwoWay, ValidatesOnDataErrors=True}"/>
+
+            <!--Address-->
+            <TextBlock Text="Address"/>
+            <TextBox
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Text="{Binding CurrentContact.Address, Mode=TwoWay}"/>
+
+            <!--Notes-->
+            <TextBlock Text="Notes"/>
+            <TextBox
+                Margin="0,5,0,0"
+                FontWeight="Bold"
+                Height="50"
+                TextWrapping="Wrap"
+                Text="{Binding CurrentContact.Notes, Mode=TwoWay}"/>
+
+            <!--Save and Cancel Buttons-->
+            <StackPanel
+                Margin="0,10,0,0"
+                VerticalAlignment="Bottom"
+                Orientation="Horizontal">
+                <Button Padding="5"
+                        Command="{Binding SaveDataCommand}"
+                        Content="Save">
+                    <Button.IsEnabled>
+                        <MultiBinding Converter="{StaticResource InverseAndBooleansToBooleanConverter}"
+                                      Mode="TwoWay">
+                            <Binding ElementName="FirstName" Path="(Validation.HasError)"/>
+                            <Binding ElementName="LastName" Path="(Validation.HasError)"/>
+                            <Binding ElementName="Email" Path="(Validation.HasError)"/>
+                            <Binding ElementName="Birthday" Path="(Validation.HasError)"/>
+                        </MultiBinding>
+                    </Button.IsEnabled>
+                </Button>
+
+                <Button Margin="10,0,0,0"
+                        Padding="5"
+                        Content="Cancel">
+                </Button>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>

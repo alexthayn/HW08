@@ -4,16 +4,11 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:HW08"   
-        xmlns:vm="clr-namespace:HW08.ViewModels"
         mc:Ignorable="d"
         Title="Contact Editor" 
         Height="450" 
         Width="800">
-    <Fluent:RibbonWindow.DataContext>
-        <vm:MainViewModel/>
-    </Fluent:RibbonWindow.DataContext>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

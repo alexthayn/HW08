@@ -1,17 +1,27 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using GalaSoft.MvvmLight.Ioc;
+using HW08.Services;
+using HW08.Views;
 using System.Windows;
 
 namespace HW08
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
+        private void StartApplication(object sender, StartupEventArgs e)
+        {
+            SimpleIoc.Default.Register<IDataProvider, VCFDataProvider>();
+            SimpleIoc.Default.Register<IEditWindowController, EditWindowController>();
+            SimpleIoc.Default.Register<IDialogService, DialogService>();
+
+            App.Current.DispatcherUnhandledException += (s, args) =>
+            {
+                SimpleIoc.Default.GetInstance<Services.IDialogService>().Exception(args.Exception);
+                args.Handled = true;
+            };
+
+            MainWindow mainWindow = new MainWindow();
+            App.Current.MainWindow = mainWindow;
+            mainWindow.Show();
+        }
     }
 }

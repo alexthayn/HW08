@@ -1,6 +1,10 @@
-﻿using System;
+﻿using MixERP.Net.VCards;
+using MixERP.Net.VCards.Serializer;
+using MixERP.Net.VCards.Types;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 
@@ -13,7 +17,7 @@ namespace HW08.Models
         private string _lastName;
         private string _company;
         private string _jobTitle;
-        private string _mobilePhone;
+        string _mobilePhone;
         private DateTime _birthday;
         private string _email;
         private string _address;
@@ -187,6 +191,43 @@ namespace HW08.Models
 
             field = newValue;
             OnPropertyChanged(propertyName);          
+        }
+
+        public void SaveVCardFormat()
+        {
+            var vcard = new VCard
+            {
+                Version = VCardVersion.V4,
+                FormattedName = FullName,
+                FirstName = this.FirstName,
+                LastName = this.LastName,
+                Organization = this.Company,
+                Title = JobTitle,
+                Telephones = new List<MixERP.Net.VCards.Models.Telephone>(){
+                    new MixERP.Net.VCards.Models.Telephone()
+                        {
+                            Number = MobilePhone,
+                            Type = TelephoneType.Cell,
+                            Preference = 0
+                        }
+                },
+                BirthDay = Birthday,
+                Emails = new List<MixERP.Net.VCards.Models.Email>(){
+                    new MixERP.Net.VCards.Models.Email(){
+                        EmailAddress = Email
+                    }
+                },
+                Addresses = new List<MixERP.Net.VCards.Models.Address>(){
+                    new MixERP.Net.VCards.Models.Address(){
+                        Street = Address
+                    }
+                },
+                Note = Notes
+            };
+
+            string Serialized = vcard.Serialize();
+            string path = Path.Combine(AppDomain.CurrentDomain.BaseDirectory,$"{FullName}.vcf");
+            File.WriteAllText(path, Serialized);
         }
     }
 }
