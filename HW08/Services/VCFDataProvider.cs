@@ -19,31 +19,31 @@ namespace HW08.Services
         public List<IContact> GetAllContacts()
         {
             List<IContact> AllContacts = new List<IContact>();
-            string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToString() + "\\Contacts";
-            if (Directory.Exists(path))
-            {
-                string contents = File.ReadAllText(path, Encoding.UTF8);
-                IEnumerable<VCard> AllVCards = Deserializer.GetVCards(contents);                
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData).ToString() + "\\Contacts";
+            //if (Directory.Exists(path))
+            //{
+            //    string contents = File.ReadAllText(path, Encoding.UTF8);
+            //    IEnumerable<VCard> AllVCards = Deserializer.GetVCards(contents);                
 
-                foreach (VCard v in AllVCards)
-                {
-                    var c = new Contact()
-                    {
-                        Id = v.UniqueIdentifier,
-                        FirstName = v?.FirstName,
-                        LastName = v?.LastName,
-                        Company = v?.Organization,
-                        JobTitle = v?.Title,
-                        MobilePhone = v?.Telephones.ToString(),
-                        Birthday = (DateTime)v?.BirthDay,
-                        Email = v?.Emails.ToString(),
-                        Address = v?.Addresses.ToString(),
-                        Notes = v?.Note
-                    };
+            //    foreach (VCard v in AllVCards)
+            //    {
+            //        var c = new Contact()
+            //        {
+            //            Id = v.UniqueIdentifier,
+            //            FirstName = v?.FirstName,
+            //            LastName = v?.LastName,
+            //            Company = v?.Organization,
+            //            JobTitle = v?.Title,
+            //            MobilePhone = v?.Telephones.ToString(),
+            //            Birthday = (DateTime)v?.BirthDay,
+            //            Email = v?.Emails.ToString(),
+            //            Address = v?.Addresses.ToString(),
+            //            Notes = v?.Note
+            //        };
 
-                    AllContacts.Add(c);
-                }                
-            }
+            //        AllContacts.Add(c);
+            //    }                
+            //}
             return AllContacts;
         }
 
