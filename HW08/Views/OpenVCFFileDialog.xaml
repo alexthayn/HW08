@@ -1,0 +1,17 @@
+﻿<Window x:Class="HW08.Views.OpenVCFFileDialog"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:HW08.Views"
+        mc:Ignorable="d"
+        Title="Open VCF Files" Height="300" Width="300">
+    <Grid>
+        <DockPanel Margin="10">
+            <WrapPanel HorizontalAlignment="Center" DockPanel.Dock="Top" Margin="0,0,0,10">
+                <Button Name="btnOpenFile" Command="btnOpenFiles_Click">Open files</Button>
+            </WrapPanel>
+            <ListBox Name="lbFiles" />
+        </DockPanel>
+    </Grid>
+</Window>

@@ -50,5 +50,13 @@
                 </Fluent:RibbonGroupBox>
             </Fluent:RibbonTabItem>
         </Fluent:Ribbon>
+        <DataGrid Grid.Row="1"
+                  ItemsSource="{Binding AllContacts}"
+                  AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Binding="{Binding FirstName}"/>
+            </DataGrid.Columns>
+            
+        </DataGrid>
     </Grid>
 </Fluent:RibbonWindow>

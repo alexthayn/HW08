@@ -81,26 +81,18 @@ namespace HW08.ViewModels
                 DialogService.Warning("First Name is required");
                 return;
             }
-
-            bool result = false;
+            
             switch (Args.Type)
             {
                 case ActionType.Add:
-                    result = DataProvider.Insert(CurrentContact);
+                    DataProvider.Insert(CurrentContact);
                     break;
                 case ActionType.Edit:
-                    result = DataProvider.Update(CurrentContact);
+                    DataProvider.Update(CurrentContact);
                     break;
             }
 
-            if (!result)
-            {
-                DialogService.Warning($"Error occured, save data failed");
-            }
-            else
-            {
-                Messenger.Default.Send(new CloseWindowEventArgs());
-            }
+            Messenger.Default.Send(new CloseWindowEventArgs());            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;

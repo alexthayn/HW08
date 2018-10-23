@@ -30,14 +30,7 @@
         </ResourceDictionary>
         
         <!--TextBox validation style-->
-        <ResourceDictionary>
-          <Style TargetType="{x:Type TextBox}" x:Key="TextBoxValidationStyle">
-            <Style.Triggers>
-              <Trigger Property="Validation.HasError" Value="true">
-                <Setter Property="ToolTip" Value="{Binding RelativeSource={RelativeSource Self}, Path=(Validation.Errors).CurrentItem.ErrorContent}" />
-              </Trigger>
-            </Style.Triggers>
-          </Style>
+        <ResourceDictionary>         
           
           <!--VM Locator-->
           <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:HW08.ViewModel" />

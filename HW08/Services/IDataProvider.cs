@@ -1,9 +1,5 @@
 ﻿using HW08.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HW08.Services
 {
@@ -15,7 +11,7 @@ namespace HW08.Services
 
         IContact GetContactById(int id);
 
-        bool Insert(IContact contact);
+        void Insert(IContact contact);
 
         bool Update(IContact contact);
     }
