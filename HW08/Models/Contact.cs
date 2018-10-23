@@ -1,4 +1,5 @@
-﻿using MixERP.Net.VCards;
+﻿using GalaSoft.MvvmLight;
+using MixERP.Net.VCards;
 using MixERP.Net.VCards.Serializer;
 using MixERP.Net.VCards.Types;
 using System;
@@ -10,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace HW08.Models
 {
-    public class Contact : IContact, IDataErrorInfo, INotifyPropertyChanged
+    public class Contact : ObservableObject, IContact, IDataErrorInfo, INotifyPropertyChanged
     {
         private string _id;
         private string _firstName;
@@ -182,15 +183,6 @@ namespace HW08.Models
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-        public void Set<T>(ref T field, T newValue, [CallerMemberName] string propertyName = null)
-        {
-            if (field.Equals(newValue))
-                return;
-
-            field = newValue;
-            OnPropertyChanged(propertyName);          
         }
 
         public void SaveVCardFormat()

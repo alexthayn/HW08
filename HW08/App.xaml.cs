@@ -15,7 +15,7 @@ namespace HW08
 
             App.Current.DispatcherUnhandledException += (s, args) =>
             {
-                SimpleIoc.Default.GetInstance<Services.IDialogService>().Exception(args.Exception);
+                SimpleIoc.Default.GetInstance<IDialogService>().Exception(args.Exception);
                 args.Handled = true;
             };
 

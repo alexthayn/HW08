@@ -17,9 +17,9 @@ namespace HW08.Views
     /// <summary>
     /// Interaction logic for AddContact.xaml
     /// </summary>
-    public partial class AddContact : Window
+    public partial class EditWindow : Window
     {
-        public AddContact()
+        public EditWindow()
         {
             InitializeComponent();
         }

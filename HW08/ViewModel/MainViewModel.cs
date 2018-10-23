@@ -1,34 +1,50 @@
-using GalaSoft.MvvmLight;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using HW08.Models;
+using HW08.Services;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Windows.Input;
 
-namespace HW08.ViewModel
+namespace HW08.ViewModels
 {
-    /// <summary>
-    /// This class contains properties that the main View can data bind to.
-    /// <para>
-    /// Use the <strong>mvvminpc</strong> snippet to add bindable properties to this ViewModel.
-    /// </para>
-    /// <para>
-    /// You can also use Blend to data bind with the tool's support.
-    /// </para>
-    /// <para>
-    /// See http://www.galasoft.ch/mvvm
-    /// </para>
-    /// </summary>
     public class MainViewModel : ViewModelBase
     {
-        /// <summary>
-        /// Initializes a new instance of the MainViewModel class.
-        /// </summary>
-        public MainViewModel()
+        public IEditWindowController EditWindowController { get; }
+        public ObservableCollection<Contact> AllContacts { get; set; }
+        private RelayCommand _addContactCommand;
+        public ICommand AddContactCommand
         {
-            ////if (IsInDesignMode)
-            ////{
-            ////    // Code runs in Blend --> create design time data.
-            ////}
-            ////else
-            ////{
-            ////    // Code runs "for real"
-            ////}
+            get
+            {
+                if(_addContactCommand == null)
+                {
+                    _addContactCommand = new RelayCommand(AddContact);
+                }
+                return _addContactCommand;
+            }
+        }
+
+        public Contact SelectedContact { get; set; }
+        public IDataProvider DataProvider { get; }
+        public bool CanAddContact { get { return true; } }
+        public IDialogService DialogService { get; }
+
+        public MainViewModel(IDataProvider dataProvider, IEditWindowController editWindowController, IDialogService dialogService)
+        {
+            DataProvider = dataProvider;
+            EditWindowController = editWindowController;
+            DialogService = dialogService;
+
+        }
+
+        private void AddContact()
+        {
+            var result = EditWindowController.ShowDialog(new EventArgs.OpenEditWindowArgs { Type = EventArgs.ActionType.Add });
+            if(result.HasValue && result.Value)
+            {
+                AllContacts = new ObservableCollection<Contact>(DataProvider.GetAllContacts().OfType<Contact>());        
+            }
         }
     }
 }

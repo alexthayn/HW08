@@ -1,4 +1,7 @@
-﻿using HW08.EventArgs;
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
+using HW08.EventArgs;
 using HW08.Models;
 using HW08.Services;
 using System;
@@ -8,7 +11,7 @@ using System.Runtime.CompilerServices;
 
 namespace HW08.ViewModels
 {
-    public class EditViewModel : INotifyPropertyChanged
+    public class EditViewModel : ViewModelBase, INotifyPropertyChanged
     {
         private ObservableCollection<Contact> _sampleData;
 

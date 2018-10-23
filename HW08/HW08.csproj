@@ -95,7 +95,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AddContact.xaml">
+    <Page Include="Views\EditWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -117,16 +117,13 @@
     <Compile Include="Services\IDataProvider.cs" />
     <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\IEditWindowController.cs" />
-    <Compile Include="Services\Messenger.cs" />
     <Compile Include="Services\VCFDataProvider.cs" />
-    <Compile Include="ViewModels\AddContactCommand.cs" />
-    <Compile Include="ViewModels\EditViewModel.cs" />
-    <Compile Include="ViewModels\MainViewModel.cs" />
-    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModel\AddContactCommand.cs" />
+    <Compile Include="ViewModel\EditViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\ViewModelLocator.cs" />
-    <Compile Include="Views\AddContact.xaml.cs">
-      <DependentUpon>AddContact.xaml</DependentUpon>
+    <Compile Include="Views\EditWindow.xaml.cs">
+      <DependentUpon>EditWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

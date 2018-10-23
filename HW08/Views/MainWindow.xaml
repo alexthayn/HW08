@@ -7,7 +7,8 @@
         mc:Ignorable="d"
         Title="Contact Editor" 
         Height="450" 
-        Width="800">
+        Width="800"
+        DataContext="{Binding MainViewModel, Source={StaticResource Locator}}">
 
     <Grid>
         <Grid.RowDefinitions>
